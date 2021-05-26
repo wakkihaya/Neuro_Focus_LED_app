@@ -69,6 +69,7 @@ if __name__ == "__main__":
 
     # Record data for mental activity 0
 #     BCIw.beep()
+    print('\n Focus on something!')
     eeg_data0, timestamps0 = inlet.pull_chunk(
         timeout=training_length+1, max_samples=fs * training_length)
     eeg_data0 = np.array(eeg_data0)[:, index_channel]
