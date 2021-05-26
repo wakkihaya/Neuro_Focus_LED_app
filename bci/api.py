@@ -2,6 +2,8 @@
 import numpy as np  # Module that simplifies computations on matrices
 import matplotlib.pyplot as plt  # Module used for plotting
 from pylsl import StreamInlet, resolve_byprop  # Module to receive EEG data
+import serial
+import time
 
 import bci_helper as BCIw  # Our own functions for the workshop
 
@@ -142,6 +144,8 @@ if __name__ == "__main__":
             """ 3.3 VISUALIZE THE DECISIONS """
             plotter_decision.update_plot(decision_buffer)
             plt.pause(0.00001)
+            ser = serial.Serial('/dev/tty.usbmodem144201', 9600);
+            ser.write(y_hat)
 
     except KeyboardInterrupt:
 
