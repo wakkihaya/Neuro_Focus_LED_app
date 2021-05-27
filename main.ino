@@ -6,7 +6,7 @@ void setup()
     Serial.begin(9600);
 }
 
-byte inputData;
+int inputData;
 void loop()
 {
     if (Serial.available() > 0)
@@ -14,11 +14,11 @@ void loop()
         inputData = Serial.read();
         switch (inputData)
         {
-        case '[0.]': //Focus
+        case '0': //Focus
             digitalWrite(LED, LOW);
             Serial.println("turn off");
             break;
-        case '[1.]': //Relax
+        case '1': //Relax
             digitalWrite(LED, HIGH);
             Serial.println("turn on");
             break;

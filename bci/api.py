@@ -137,7 +137,7 @@ if __name__ == "__main__":
             y_hat = BCIw.test_classifier(classifier,
                                          feat_vector.reshape(1, -1), mu_ft,
                                          std_ft)
-            print(y_hat)
+            print(y_hat[0])
 
             decision_buffer, _ = BCIw.update_buffer(decision_buffer,
                                                     np.reshape(y_hat, (-1, 1)))
@@ -146,7 +146,11 @@ if __name__ == "__main__":
             plotter_decision.update_plot(decision_buffer)
             plt.pause(0.00001)
             ser = serial.Serial('/dev/tty.usbmodem144201', 9600);
-            ser.write(y_hat)
+            time.sleep(1)
+            if y_hat[0] == 1:
+                ser.write(bytes("1", 'utf-8'))
+            else:
+                ser.write(bytes("0", 'utf-8'))
 
     except KeyboardInterrupt:
 
